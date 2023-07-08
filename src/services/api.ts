@@ -1,0 +1,93 @@
+import { collection, getDocs, where, query, limit } from "firebase/firestore";
+import { firebaseDB } from "@/services/firebase";
+import { type IProductModel } from "@/types";
+
+class Api {
+
+    async getHomeData() {
+        try {
+            const special: IProductModel[] = []
+            const qSpecial = await query(collection(firebaseDB, "products"), where('isSpecial', '==', true));
+            const querySnapSpecial = await getDocs(qSpecial);
+            querySnapSpecial.forEach((doc) => {
+                special.push(doc.data() as IProductModel)
+            })
+            const products: IProductModel[] = []
+            const q = await query(collection(firebaseDB, "products"), limit(6));
+            const querySnap = await getDocs(q);
+            querySnap.forEach((doc) => {
+                products.push(doc.data() as IProductModel)
+            })
+            return {
+                special: special,
+                products: products,
+            };
+        } catch (e: unknown) {
+            throw JSON.stringify(e);
+        }
+
+    }
+
+    async getCartData(ids: string[]) {
+        try {
+            const products: IProductModel[] = []
+            const q = await query(collection(firebaseDB, "products"), where('id', 'in', ids));
+            const querySnap = await getDocs(q);
+            querySnap.forEach((doc) => {
+                products.push(doc.data() as IProductModel)
+            })
+            return products;
+        } catch (e: unknown) {
+            throw JSON.stringify(e);
+        }
+
+    }
+
+    async getProductBySlugData(slug: string) {
+        try {
+            const products: IProductModel[] = [];
+            const q = await query(collection(firebaseDB, "products"), where('slug', '==', slug), limit(10));
+            const querySnap = await getDocs(q);
+
+            querySnap.forEach((doc) => {
+                products.push(doc.data() as IProductModel)
+            })
+            return products[0];
+        } catch (e: unknown) {
+            return Promise.reject(e);
+        }
+
+    }
+
+    async getProductsByCategoryID(cat: string) {
+        try {
+            const products: IProductModel[] = [];
+            const q = await query(collection(firebaseDB, "products"), where('categorys', 'array-contains', cat));
+            const querySnap = await getDocs(q);
+
+            querySnap.forEach((doc) => {
+                products.push(doc.data() as IProductModel)
+            })
+            return products;
+        } catch (e: unknown) {
+            return Promise.reject(e);
+        }
+
+    }
+
+    async getProductsSearch(q: string) {
+        try {
+            const products: IProductModel[] = []
+            const response = await query(collection(firebaseDB, "products"), where('search_name', 'array-contains', q));
+            const queryProducts = await getDocs(response);
+            queryProducts.forEach((doc) => {
+                products.push(doc.data() as IProductModel)
+            })
+            return Promise.resolve(products);
+        } catch (e: unknown) {
+            return Promise.reject(e);
+        }
+    }
+}
+
+export const api = new Api();

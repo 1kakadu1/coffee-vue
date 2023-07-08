@@ -1,0 +1,72 @@
+import { IProductModel } from "@/types";
+
+export const PRODUCTS_MOCK: IProductModel[] = [
+    {
+        id: "id-1",
+        name: "Coffee one",
+        description: "It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.",
+        preview: "https://www.tastingtable.com/img/gallery/coffee-brands-ranked-from-worst-to-best/intro-1645231221.webp",
+        code: "34334",
+        price: { "300": 400, "500": 650 },
+        categorys: ["coffee"],
+        size: ["300", "500"],
+        measurement_value: "kg",
+        isPublic: true,
+        gallary: [],
+        energy_and_nutritional_value: [{ "unit": "kg" }],
+        composition: ["milk", "coffee"],
+        rating: 4.0,
+        slug: ""
+    },
+    {
+        id: "id-2",
+        name: "Coffee two",
+        description: "It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.",
+        preview: "https://www.tastingtable.com/img/gallery/coffee-brands-ranked-from-worst-to-best/intro-1645231221.webp",
+        code: "3433344",
+        price: { "300": 400, "500": 650 },
+        categorys: ["coffee"],
+        size: ["300", "500"],
+        measurement_value: "kg",
+        isPublic: true,
+        gallary: [],
+        energy_and_nutritional_value: [{ "unit": "kg" }],
+        composition: ["milk", "coffee"],
+        rating: 2.0,
+        slug: ""
+    },
+    {
+        id: "id-3",
+        name: "Coffee milk",
+        description: "It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.",
+        preview: "https://www.tastingtable.com/img/gallery/coffee-brands-ranked-from-worst-to-best/intro-1645231221.webp",
+        code: "3334334",
+        price: { "300": 400, "500": 650 },
+        categorys: ["coffee"],
+        size: ["300", "500"],
+        measurement_value: "kg",
+        isPublic: true,
+        gallary: [],
+        energy_and_nutritional_value: [{ "unit": "kg" }],
+        composition: ["milk", "coffee"],
+        rating: 5.0,
+        slug: ""
+    },
+    {
+        id: "id-4",
+        name: "Coffee double mix",
+        description: "It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.",
+        preview: "https://www.tastingtable.com/img/gallery/coffee-brands-ranked-from-worst-to-best/intro-1645231221.webp",
+        code: "34454334",
+        price: { "300": 400, "500": 650 },
+        categorys: ["coffee"],
+        size: ["300", "500"],
+        measurement_value: "kg",
+        isPublic: true,
+        gallary: [],
+        energy_and_nutritional_value: [{ "unit": "kg" }],
+        composition: ["milk", "coffee"],
+        rating: 4.5,
+        slug: ""
+    }
+]
