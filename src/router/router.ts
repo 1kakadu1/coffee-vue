@@ -1,7 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
 import HomePage from "@/page/Home.vue";
+import OrderPage from "@/page/OrderPage.vue";
 import AboutPage from "@/page/About.vue";
 import SingleProduct from "@/page/SingleProduct.vue"
+import Products from "@/page/Products.vue"
 import { VueElement } from "vue";
 
 export enum RouterPath {
@@ -9,7 +11,9 @@ export enum RouterPath {
   about = "/about",
   blog = '/blog',
   contact = '/contact',
-  products_single = '/products/:slug'
+  products = '/products',
+  products_single = '/products/:slug',
+  order = '/order'
 }
 
 const routes = [
@@ -35,6 +39,22 @@ const routes = [
     component: SingleProduct,
     meta: {
       title: ''
+    }
+  },
+  {
+    path: RouterPath.products,
+    name: "Products",
+    component: Products,
+    meta: {
+      title: ''
+    }
+  },
+  {
+    path: RouterPath.order,
+    name: "Order",
+    component: OrderPage,
+    meta: {
+      title: 'Оформление заказа'
     }
   },
 ];

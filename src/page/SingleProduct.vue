@@ -140,20 +140,20 @@ watchEffect(() => {
                                         <counter-item v-if="!isLoadingProduct"
                                             :count="currentCount(data?.id as string, data?.size[active_size] as string)"
                                             :on-add="() => {
-                                                    onCartAdd({
-                                                        count: 1,
-                                                        product: data!,
-                                                        size: data!.size[active_size],
-                                                        id: data!.id
-                                                    })
-                                                }" :on-sub="() => {
-            onCartSub({
-                count: 1,
-                product: data!,
-                size: data!.size[active_size],
-                id: data!.id
-            })
-        }" :big="true"></counter-item>
+                                                onCartAdd({
+                                                    count: 1,
+                                                    product: data!,
+                                                    size: data!.size[active_size],
+                                                    id: data!.id
+                                                })
+                                            }" :on-sub="() => {
+    onCartSub({
+        count: 1,
+        product: data!,
+        size: data!.size[active_size],
+        id: data!.id
+    })
+}" :big="true"></counter-item>
                                         <div v-if="!isLoadingProduct" class="single-product-info__price">
                                             {{ data?.price[data?.size[active_size]] }} ₽ за {{ data?.size[active_size] }} {{
                                                 data?.measurement_value || "" }}
@@ -239,7 +239,7 @@ watchEffect(() => {
     &__wawe {
         width: 100%;
         height: 288px;
-        background-image: url('~@/assets/img/wawe.svg');
+        background-image: url('@/assets/img/wawe.svg');
         background-repeat: no-repeat;
         background-size: cover;
         margin-top: -33px;

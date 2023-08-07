@@ -1,6 +1,6 @@
-import { collection, getDocs, where, query, limit } from "firebase/firestore";
+import { collection, getDocs, where, query, limit, addDoc } from "firebase/firestore";
 import { firebaseDB } from "@/services/firebase";
-import { type IProductModel } from "@/types";
+import { ICartModel, type IProductModel } from "@/types";
 
 class Api {
 
@@ -84,6 +84,24 @@ class Api {
                 products.push(doc.data() as IProductModel)
             })
             return Promise.resolve(products);
+        } catch (e: unknown) {
+            return Promise.reject(e);
+        }
+    }
+
+    async createOrder(data: { products: ICartModel[], name: string, phone: string, email: string, comments?: string, date?: string }): Promise<string> {
+        try {
+            const docRef = await addDoc(collection(firebaseDB, "orders"), {
+                "key": 'key',
+                "name": data.name,
+                "email": data.phone,
+                "date": data?.date || Date.now(),
+                "comments": data?.comments || "",
+                "address": "London",
+                "products": data.products,
+                "userID": 'not_register_user',
+            });
+            return Promise.resolve(docRef.id);
         } catch (e: unknown) {
             return Promise.reject(e);
         }

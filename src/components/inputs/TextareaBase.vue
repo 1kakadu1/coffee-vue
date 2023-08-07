@@ -1,8 +1,8 @@
 <script setup  lang="ts">
-import { type InputHTMLAttributes } from 'vue';
+import { type TextareaHTMLAttributes } from 'vue';
 import { vMaska } from "maska"
 
-interface IInputBaseProps extends /* @vue-ignore */ InputHTMLAttributes {
+interface ITextareaBaseProps extends /* @vue-ignore */ TextareaHTMLAttributes {
     label?: string;
     inheritAttrs?: boolean;
     error?: string;
@@ -17,22 +17,22 @@ interface IInputBaseProps extends /* @vue-ignore */ InputHTMLAttributes {
     maska?: string;
 }
 
-const props = withDefaults(defineProps<IInputBaseProps>(), {
+const props = withDefaults(defineProps<ITextareaBaseProps>(), {
     type: "text",
-    name: "input",
+    name: "textarea",
     inheritAttrs: false
 });
 
 </script>
 
 <template>
-    <div class="form-control" :class="[{ [classes?.root || 'uset']: !!classes?.root }]">
-        <label v-if="label" :class="[{ [classes?.label || 'uset']: !!classes?.label }]" class="form-control__label"
+    <div class="form-control-textarea" :class="[{ [classes?.root || 'uset']: !!classes?.root }]">
+        <label v-if="label" :class="[{ [classes?.label || 'uset']: !!classes?.label }]" class="form-control-textarea__label"
             :for="props.name">{{ label }}</label>
-        <div class="form-control__container">
-            <input :class="[{ [classes?.input || 'uset']: !!classes?.input }]" class="form-control__input"
+        <div class="form-control-textarea__container">
+            <textarea :class="[{ [classes?.input || 'uset']: !!classes?.input }]" class="form-control-textarea__input"
                 :name="props.name" :type="props.type" v-bind="$attrs" v-maska :data-maska="maska" />
-            <span class="form-control__error"
+            <span class="form-control-textarea__error"
                 :class="[{ error: !!props.error }, { [classes?.error || 'uset']: !!classes?.error }]">{{ props.error
                 }}</span>
         </div>
@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<IInputBaseProps>(), {
 <style lang="scss">
 @import "@/styles/vars.scss";
 
-.form-control {
+.form-control-textarea {
     &__label {
         font-weight: 600;
         font-size: 14px;
@@ -50,11 +50,12 @@ const props = withDefaults(defineProps<IInputBaseProps>(), {
     }
 
     &__input {
-        height: 46px;
+        height: auto;
         border: 1px solid #2F303E;
         border-radius: 0px;
         padding: 10px 10px;
         transition: border 300ms ease;
+        resize: none;
 
         &:focus {
             border: 1px solid $link;

@@ -20,9 +20,9 @@
         </div>
     </div>
     <modal-window animation="right" :onClose="() => toggleCart()" :open="openCart" :classes="{
-            modal: 'cart-modal',
-            close: 'cart-close'
-        }">
+        modal: 'cart-modal',
+        close: 'cart-close'
+    }">
         <div class="cart-modal__body">
 
             <transition name="fadeContent" mode="out-in" appear>
@@ -61,7 +61,7 @@
                                 {{ CURRENCY }}
                             </span>
                         </div>
-                        <button-base :onClick="() => { }" label="Оформить"></button-base>
+                        <button-base :onClick="() => goTo()" label="Оформить"></button-base>
                     </div>
                 </div>
 
@@ -77,7 +77,10 @@ import ModalWindow from '@/components/ModalWindow.vue';
 import CartItem from "@/components/cards/CardCartItem.vue";
 import { CURRENCY } from '@/const/global';
 import useCart from '@/hooks/useCart';
+import { useRouter } from 'vue-router';
+import { RouterPath } from '@/router/router';
 const props = defineProps<{ onToggle?: (value: boolean) => void }>();
+const router = useRouter();
 const { onCartClear, totalPrice, count, onToggleCart, openCart, cartList } = useCart();
 
 const toggleCart = () => {
@@ -85,6 +88,11 @@ const toggleCart = () => {
         props.onToggle(!openCart);
     }
     onToggleCart()
+}
+
+const goTo = () => {
+    toggleCart();
+    router.push({ path: RouterPath.order });
 }
 </script>
 
