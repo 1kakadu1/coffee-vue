@@ -3,6 +3,7 @@
 </template>
 
 <script setup  lang="ts">
+import { api } from './services/api';
 import { CartActions } from './store/modules/cart/cart.model';
 import { useCartStore } from './store/store';
 import { onMounted } from 'vue'
@@ -10,6 +11,16 @@ import { onMounted } from 'vue'
 onMounted(()=>{
   const state = useCartStore();
   state.dispatch(CartActions.get);
+  function requestPermission() {
+    console.log('Requesting permission...');
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.')
+        api.getTokenPush("8072023");
+      }})};
+
+  requestPermission();
+  
 })
 
 </script>

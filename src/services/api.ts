@@ -1,6 +1,7 @@
-import { collection, getDocs, where, query, limit } from "firebase/firestore";
-import { firebaseDB } from "@/services/firebase";
+import { collection, getDocs, where, query, limit, setDoc, doc } from "firebase/firestore";
+import { firebaseDB, firebaseMessaging } from "@/services/firebase";
 import { type IProductModel } from "@/types";
+import { getToken } from "firebase/messaging";
 
 class Api {
 
@@ -87,6 +88,21 @@ class Api {
         } catch (e: unknown) {
             return Promise.reject(e);
         }
+    }
+    async registrationTokenUser(user_id: string,token: string){
+        await setDoc(doc(firebaseDB, "users_tokens", user_id), {token});
+    }
+    getTokenPush(user_id: string){
+        return getToken(firebaseMessaging, { vapidKey: import.meta.env.VITE_APP_FIREBASE_PUBLIC_PUSH_KEY, }).then((currentToken) => {
+            if (currentToken) {
+              console.log("Token is:",currentToken);
+              this.registrationTokenUser(user_id, currentToken);
+            } else {
+              console.log('No registration token available. Request permission to generate one.');
+            }
+          }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+          });
     }
 }
 
