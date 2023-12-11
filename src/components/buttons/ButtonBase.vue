@@ -9,7 +9,7 @@
 </template>
 
 <script setup  lang="ts">
-withDefaults(defineProps<{ label?: string, onClick: (e?: MouseEvent) => void, className?: string, outline?: boolean, color?: "dark" | "light" }>(), {
+withDefaults(defineProps<{ label?: string, onClick?: (e?: MouseEvent) => void, className?: string, outline?: boolean, color?: "dark" | "light" }>(), {
     color: "dark",
 })
 </script>
@@ -44,6 +44,7 @@ export default defineComponent({
                     border: 3px solid $black;
                     background-color: transparent;
                     color: $black;
+                    font-weight: 600;
                 }
             }
         }
@@ -58,6 +59,7 @@ export default defineComponent({
                     border: 3px solid $link;
                     background-color: transparent;
                     color: $write;
+                    font-weight: 600;
                 }
             }
         }
@@ -73,6 +75,7 @@ export default defineComponent({
                 border: 3px solid $black;
                 background-color: $black;
                 color: $write;
+                font-weight: 600;
             }
         }
     }

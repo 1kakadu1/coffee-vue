@@ -1,5 +1,6 @@
 <template>
   <router-view />
+  <notifications position="bottom left" />
 </template>
 
 <script setup  lang="ts">
@@ -8,7 +9,7 @@ import { CartActions } from './store/modules/cart/cart.model';
 import { useCartStore } from './store/store';
 import { onMounted } from 'vue'
 
-onMounted(()=>{
+onMounted(() => {
   const state = useCartStore();
   state.dispatch(CartActions.get);
   function requestPermission() {

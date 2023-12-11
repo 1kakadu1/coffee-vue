@@ -1,7 +1,9 @@
-import { collection, getDocs, where, query, limit, setDoc, doc } from "firebase/firestore";
+
+import { collection, getDocs, where, query, limit, setDoc, doc, addDoc } from "firebase/firestore";
 import { firebaseDB, firebaseMessaging } from "@/services/firebase";
-import { type IProductModel } from "@/types";
+import type { ICartModel, IProductModel } from "@/types";
 import { getToken } from "firebase/messaging";
+
 
 class Api {
 
@@ -89,6 +91,7 @@ class Api {
             return Promise.reject(e);
         }
     }
+
     async registrationTokenUser(user_id: string,token: string){
         await setDoc(doc(firebaseDB, "users_tokens", user_id), {token});
     }
@@ -103,6 +106,24 @@ class Api {
           }).catch((err) => {
             console.log('An error occurred while retrieving token. ', err);
           });
+        }
+
+    async createOrder(data: { products: ICartModel[], name: string, phone: string, email: string, comments?: string, date?: string }): Promise<string> {
+        try {
+            const docRef = await addDoc(collection(firebaseDB, "orders"), {
+                "key": 'key',
+                "name": data.name,
+                "email": data.phone,
+                "date": data?.date || Date.now(),
+                "comments": data?.comments || "",
+                "address": "London",
+                "products": data.products,
+                "userID": 'not_register_user',
+            });
+            return Promise.resolve(docRef.id);
+        } catch (e: unknown) {
+            return Promise.reject(e);
+        }
     }
 }
 
