@@ -1,26 +1,17 @@
 import { createWebHistory, createRouter } from "vue-router";
-import HomePage from "@/page/Home.vue";
+import Home from "@/page/Home.vue";
 import OrderPage from "@/page/OrderPage.vue";
-import AboutPage from "@/page/About.vue";
+import About from "@/page/About.vue";
 import SingleProduct from "@/page/SingleProduct.vue"
 import Products from "@/page/Products.vue"
 import { VueElement } from "vue";
-
-export enum RouterPath {
-  home = "/",
-  about = "/about",
-  blog = '/blog',
-  contact = '/contact',
-  products = '/products',
-  products_single = '/products/:slug',
-  order = '/order'
-}
+import { RouterPath } from "@/types/models/router.model";
 
 const routes = [
   {
     path: RouterPath.home,
     name: "Home",
-    component: HomePage,
+    component: Home,
     meta: {
       title: 'Home'
     }
@@ -28,7 +19,7 @@ const routes = [
   {
     path: RouterPath.about,
     name: "About",
-    component: AboutPage,
+    component: About,
     meta: {
       title: 'About'
     }
@@ -61,11 +52,11 @@ const routes = [
 
 
 
-export const routerMenu: { label: string, href: RouterPath, icon?: VueElement, }[] = [
-  { label: 'Главная', href: RouterPath.home },
-  { label: 'Блог', href: RouterPath.blog },
-  { label: 'О нас', href: RouterPath.about },
-];
+// export const routerMenu: { label: string, href: RouterPath, icon?: VueElement, }[] = [
+//   { label: 'Главная', href: RouterPath.home },
+//   { label: 'Блог', href: RouterPath.blog },
+//   { label: 'О нас', href: RouterPath.about },
+// ];
 
 const router = createRouter({
   history: createWebHistory(),

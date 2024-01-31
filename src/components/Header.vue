@@ -7,7 +7,7 @@
       </div>
       <div class="header__toolbar">
         <div class="header__menu">
-          <MenuHeader :link="menu" />
+          <Menu :link="menu" />
         </div>
         <div class="header__actions">
           <button class="header__actions-search" v-on:click="onToggleSearch(!open)">
@@ -24,29 +24,19 @@
 </template>
 
 <script setup  lang="ts">
+import { computed, VueElement, } from 'vue'
+import Menu from "@/components/Menu.vue";
+import CartButton from "@/components/buttons/CartButton.vue";
+import { useSearchStore } from '@/store/store';
+import { SearchMutation } from '@/store/modules/search/search.model';
+import type { RouterPath } from '@/types/models/router.model';
+
 defineProps<{ logo: string, menu: { label: string, href: RouterPath, icon?: VueElement }[], fixed?: boolean }>();
 const store = useSearchStore();
 const open = computed(() => store.state.open)
 const onToggleSearch = (value: boolean) => {
   store.commit(SearchMutation.toggleSearchOpen, value)
 }
-</script>
-
-<script  lang="ts">
-import { defineComponent, computed, VueElement, } from 'vue'
-import MenuHeader from "@/components/Menu.vue";
-import CartButton from "@/components/buttons/CartButton.vue";
-import { RouterPath } from "../router/router";
-import { useSearchStore } from '@/store/store';
-import { SearchMutation } from '@/store/modules/search/search.model';
-
-export default defineComponent({
-  name: 'HeaderComponent',
-  components: {
-    MenuHeader,
-    CartButton,
-  },
-})
 </script>
 
 <style lang="scss">

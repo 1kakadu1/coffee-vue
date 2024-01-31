@@ -59,7 +59,7 @@ import slide_3_prview from "@/assets/img/slider/slide-3.jpg"
 import slide_video from "@/assets/video/v-720.mp4"
 
 import { computed, defineComponent, onMounted } from 'vue'
-import PageLayout from "@/components/layouts/page.layout.vue";
+import PageLayout from "@/components/layouts/PageLayout.vue";
 import SliderHome from "../components/SwiperFull.vue";
 import SectionText from "@/components/sections/SectionText.vue";
 import SectionProducts from "@/components/sections/SectionProducts.vue";

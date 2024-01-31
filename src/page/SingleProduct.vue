@@ -1,6 +1,6 @@
 <script setup  lang="ts">
 import useSWRV, { mutate } from 'swrv'
-import PageLayout from "@/components/layouts/page.layout.vue";
+import PageLayout from "@/components/layouts/PageLayout.vue";
 import CounterItem from "@/components/CounterItem.vue";
 import { useRoute } from "vue-router";
 import { api } from '@/services/api';

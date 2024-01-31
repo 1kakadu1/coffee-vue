@@ -47,7 +47,7 @@
                     </div>
                     <transition-group name="list" tag="ul" class="cart-modal__list scroll">
                         <li v-for="item in cartList" :key="item.id + '' + item.size" class="cart-modal__list-item">
-                            <cart-item :data="item"></cart-item>
+                            <CardCartItem :data="item"></CardCartItem>
                         </li>
                     </transition-group>
                     <!-- <ul >
@@ -74,11 +74,13 @@
 <script setup  lang="ts">
 import cart_empty from '@/assets/img/cart-empty.webp';
 import ModalWindow from '@/components/ModalWindow.vue';
-import CartItem from "@/components/cards/CardCartItem.vue";
+import CardCartItem from "@/components/cards/CardCartItem.vue";
 import { CURRENCY } from '@/const/global';
 import useCart from '@/hooks/useCart';
+import { RouterPath } from '@/types/models/router.model';
 import { useRouter } from 'vue-router';
-import { RouterPath } from '@/router/router';
+
+
 const props = defineProps<{ onToggle?: (value: boolean) => void }>();
 const router = useRouter();
 const { onCartClear, totalPrice, count, onToggleCart, openCart, cartList } = useCart();

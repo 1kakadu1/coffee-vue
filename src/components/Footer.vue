@@ -73,7 +73,7 @@ defineProps<{ logo: string }>()
 import { defineComponent, defineProps, } from 'vue'
 
 export default defineComponent({
-  name: 'FooterComponent',
+  name: 'Footer',
 })
 </script>
 

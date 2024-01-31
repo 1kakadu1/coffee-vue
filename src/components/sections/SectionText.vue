@@ -3,7 +3,7 @@ defineProps<{ link: string, title: string, description: string }>()
 </script>
 
 <script  lang="ts">
-import { RouterPath } from '@/router/router';
+import { RouterPath } from '@/types/models/router.model';
 import { defineComponent, defineProps } from 'vue';
 
 export default defineComponent({

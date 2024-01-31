@@ -49,7 +49,7 @@
 </template>
 <script setup  lang="ts">
 import { reactive, ref } from 'vue'
-import PageLayout from "@/components/layouts/page.layout.vue";
+import PageLayout from "@/components/layouts/PageLayout.vue";
 import { api } from "@/services/api";
 import { Form, Field } from 'vee-validate';
 import * as yup from 'yup';
