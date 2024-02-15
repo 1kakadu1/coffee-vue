@@ -1,6 +1,6 @@
 import { collection, getDocs, where, query, limit, addDoc } from "firebase/firestore";
 import { firebaseDB } from "@/services/firebase";
-import { ICartModel, type IProductModel } from "@/types";
+import { type ICartModel, type IProductModel } from "@/types";
 
 class Api {
 

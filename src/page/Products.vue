@@ -4,19 +4,75 @@ import bg from "@/assets/img/products/producs-cofee.png";
 </script>
 <template>
     <PageLayoutComponent>
-        <div class="paroducts__header">
-            <div class="container">
-                <h1>Свежеобжаренный кофе 1</h1>
-                <img :src="bg" loading="lazy" alt="">
+        <div class="products__header">
+            <div class="products__bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-left">
+                            <h1 class="products__title">Свежеобжаренный кофе</h1>
+                        </div>
+                        <div class="col-right">
+                            <img :src="bg" class="products__img" loading="lazy" decoding="async" alt="">
+                        </div>
+                    </div>
+                    
+                    
+                </div>
             </div>
-            <svg width="1904" height="288" viewBox="0 0 1904 288" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 180L79.3333 150C158.667 120 317.333 60 476 36C634.667 12 793.333 24 952 54C1110.67 84 1269.33 132 1428 174C1586.67 216 1745.33 252 1824.67 270L1904 288V0H1824.67C1745.33 0 1586.67 0 1428 0C1269.33 0 1110.67 0 952 0C793.333 0 634.667 0 476 0C317.333 0 158.667 0 79.3333 0H0V180Z" fill="#F9B300"/>
+            <svg viewBox="0 0 2177 288" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path  d="M0 180L90.7083 150C181.417 120 362.833 60 544.25 36C725.667 12 907.083 24 1088.5 54C1269.92 84 1451.33 132 1632.75 174C1814.17 216 1995.58 252 2086.29 270L2177 288L2177 0L2086.29 0C1995.58 0 1814.17 0 1632.75 0C1451.33 0 1269.92 0 1088.5 0C907.083 0 725.667 0 544.25 0C362.833 0 181.417 0 90.7083 0L0 0L0 180Z" fill="#F9B300" fill-opacity="1.000000" fill-rule="evenodd"/>
             </svg>
+
+
         </div>
     </PageLayoutComponent>
 </template>
 
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+    .products__header{
+        overflow: hidden;
+    }
+    .products__bg{
+        background-color: rgb(249, 179, 0);
+        padding: 0px 40px;
+        min-height: 468px;
+        
+    }
+    .products__title{
+        color: #fff;
+        font-size: 60px;
+        font-weight: 900;
+    }
+    .products__img{
+        max-width: 682px;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+    .row{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .col-left{
+        width: 70%;
+    }
+    .col-right{
+        position: relative;
+        width: 30%;
+        height: 455px;
+    }
+
+    .products__decor{
+        width: 100%;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+</style>
   
   

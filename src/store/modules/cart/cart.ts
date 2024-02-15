@@ -2,7 +2,7 @@ import { api } from "@/services/api";
 import {type  IState } from "@/store/store";
 import { type ICartModel, type IProductModel } from "@/types";
 import { type Module } from "vuex";
-import { CartActions, CartMutation, type ICartState } from "./cart.model";
+import { CartActions,  CartMutation, type ICartState } from "./cart.model";
 
 export const CART_PRODUCTS_LOCAL = "CART_PRODUCTS";
 
@@ -15,7 +15,7 @@ export const cartModule: Module<ICartState, IState> = {
         error: undefined,
     }),
     mutations: {
-        [CartMutation.add](state: ICartState, payload: { product: IProductModel, size: string }) {
+        ['CAT_ADD'](state: ICartState, payload: { product: IProductModel, size: string }) {
             const products = [...state.products];
 
             const indexProduct = products.findIndex((item) => item.id === payload.product.id && item.size === payload.size);
@@ -32,7 +32,7 @@ export const cartModule: Module<ICartState, IState> = {
             localStorage.setItem(CART_PRODUCTS_LOCAL, JSON.stringify(products));
             state.products = products;
         },
-        [CartMutation.sub](state: ICartState, payload: { product: IProductModel, size: string }) {
+        ['CAT_SUB'](state: ICartState, payload: { product: IProductModel, size: string }) {
             const products = [...state.products];
             const indexProduct = products.findIndex((item) => item.id === payload.product.id && item.size === payload.size);
 
@@ -47,7 +47,7 @@ export const cartModule: Module<ICartState, IState> = {
             localStorage.setItem(CART_PRODUCTS_LOCAL, JSON.stringify(products));
             state.products = products;
         },
-        [CartMutation.remove_item](state: ICartState, payload: { id: string, size: string }) {
+        ['CART_REMOVE_ITEM'](state: ICartState, payload: { id: string, size: string }) {
             const products = [...state.products];
             const indexProduct = products.findIndex((item) => item.id === payload.id && item.size === payload.size);
             if (indexProduct !== -1) {
@@ -56,24 +56,24 @@ export const cartModule: Module<ICartState, IState> = {
             localStorage.setItem(CART_PRODUCTS_LOCAL, JSON.stringify(products));
             state.products = products;
         },
-        [CartMutation.clear](state: ICartState) {
+        ['CART_CLEAR'](state: ICartState) {
             localStorage.removeItem(CART_PRODUCTS_LOCAL);
             state.products = [];
         },
-        [CartMutation.toggle](state: ICartState, payload: boolean) {
+        ['CART_TOGGLE'](state: ICartState, payload: boolean) {
             state.open = payload;
         },
-        [CartMutation.setProducts](state: ICartState, payload: ICartModel[]) {
+        ['CART_SET_PRODUCTS'](state: ICartState, payload: ICartModel[]) {
             state.products = payload;
         },
-        [CartMutation.changeLoading](state: ICartState, payload: boolean) {
+        ['CART_CHANGE_LOADING'](state: ICartState, payload: boolean) {
             state.isLoading = payload;
         }
 
 
     },
     actions: {
-        async [CartActions.get]({ commit }) {
+        async ['CART_GET_PRODUCTS']({ commit }) {
             const localProduct = localStorage.getItem(CART_PRODUCTS_LOCAL);
             if (localProduct === null) {
                 return void 0;
