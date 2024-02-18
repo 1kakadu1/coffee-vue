@@ -4,23 +4,23 @@ import { computed, watch } from 'vue'
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import SearchForm from "@/components/forms/SearchForm.vue";
-import { useSearchStore } from '@/store/store';
 import { useRoute } from 'vue-router';
-import { SearchMutation } from '@/store/modules/search/search.model';
 import { RouterPath } from '@/types/models/router.model';
+import { useSearchStore } from '@/store/modules/search/search.store';
 
+const storeSearch = useSearchStore();
 const menu = computed(()=> [
   { label: 'Главная', href: RouterPath.home },
   { label: 'Блог', href: RouterPath.blog },
   { label: 'О нас', href: RouterPath.about },
 ]);
-const storeSearch = useSearchStore();
-const open = computed(() => storeSearch.state.open);
+
+const open = computed(() => storeSearch.open);
 const route = useRoute();
 
 watch(() => route.name, () => {
   if (open.value) {
-    storeSearch.commit(SearchMutation.toggleSearchOpen, false);
+    storeSearch.toggeleSearch(false);
   }
 })
 

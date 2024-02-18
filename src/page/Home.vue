@@ -65,8 +65,7 @@ import SectionText from "@/components/sections/SectionText.vue";
 import SectionProducts from "@/components/sections/SectionProducts.vue";
 import SectionCall from "@/components/sections/SectionCall.vue";
 import SectionSubscribe from "@/components/sections/SectionSubscribe.vue";
-import { useHomeStore, useStore } from "@/store/store";
-import { HomeActions } from "@/store/modules/home/home.model"
+import { useHomeStore } from "@/store"
 
 export default defineComponent({
   name: 'HomePage',
@@ -79,11 +78,11 @@ export default defineComponent({
     SectionSubscribe,
   },
   setup() {
-    const store = useStore();
-    const homeStore = useHomeStore();
-    const isLoadingProducts = computed(() => store.state.home.productsState.isLoading);
-    const products = computed(() => store.state.home.productsState.products);
-    const specials = computed(() => store.state.home.productsState.special);
+    const store = useHomeStore();
+    console.log("AAAAAAAAAA")
+    const products = computed(()=> store.products);
+    const isLoading = computed(()=> store.isLoading);
+    const specials = computed(()=> store.special);
     const assets = computed(()=>(
       {
         slide_1_prview,
@@ -94,13 +93,14 @@ export default defineComponent({
     ))
 
     onMounted(() => {
-      if (homeStore.state.productsState.products.length === 0) {
-        homeStore.dispatch(HomeActions.fetch);
+      if (products.value.length === 0) {
+        console.log("AAAAAAAAAA")
+        store.getHomeData();
       }
     });
     return {
       products,
-      isLoadingProducts,
+      isLoadingProducts: isLoading,
       specials,
       assets,
     }

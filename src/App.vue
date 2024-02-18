@@ -4,13 +4,13 @@
 </template>
 
 <script setup  lang="ts">
-import { CartActions } from './store/modules/cart/cart.model';
-import { useCartStore } from './store/store';
+
 import { onMounted } from 'vue'
+import { useCartStore } from './store';
 
 onMounted(() => {
   const state = useCartStore();
-  state.dispatch(CartActions.get);
+  state.getCartProducts();
 })
 
 </script>

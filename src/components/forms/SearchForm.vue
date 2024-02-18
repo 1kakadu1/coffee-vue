@@ -67,21 +67,20 @@
 </template>
 <script setup lang="ts">
 import useDebouncedRef from '@/hooks/useDebounce';
-import { SearchActions } from '@/store/modules/search/search.model';
-import { useSearchStore } from '@/store/store';
+import { useSearchStore } from '@/store/modules/search/search.store';
 import { computed, watch } from 'vue';
 
+const searchStore = useSearchStore();
 const search = useDebouncedRef<string>('', 600);
-const store = useSearchStore();
-const open = computed(() => store.state.open);
-const search_list = computed(() => store.state.list);
-const loading = computed(() => store.state.isLoading);
-const error = computed(() => store.state.error);
+const open = computed(() => searchStore.open);
+const search_list = computed(() => searchStore.list);
+const loading = computed(() => searchStore.isLoading);
+const error = computed(() => searchStore.error);
 
 const onChangeField = (e: Event) => {
     search.value = (e.target as HTMLInputElement).value;
 }
-const onSearch = (value: string) => store.dispatch(SearchActions.fetch, value);
+const onSearch = (value: string) => searchStore.getSearchList(value);
 
 watch(search, (new_search) => {
     if (new_search !== '') {

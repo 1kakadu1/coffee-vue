@@ -2,16 +2,15 @@
 import { type IProductModel, type ProductCardSize } from '@/types';
 import { computed } from 'vue';
 import { CURRENCY } from "@/const/global";
-import { useCartStore } from "@/store/store"
-import { CartMutation } from '@/store/modules/cart/cart.model';
 import { countProduct } from '@/utils/cart.utils';
+import { useCartStore } from '@/store';
 const props = defineProps<{ product: IProductModel, size: ProductCardSize }>()
 
 const _CURRENCY = CURRENCY;
 const storeCart = useCartStore();
-const count = computed(() => countProduct(props.product, storeCart.state.products))
+const count = computed(() => countProduct(props.product, storeCart.products))
 const onAdd = (product: IProductModel) => {
-    storeCart.commit(CartMutation.add, { product, size: product.size[0] });
+    storeCart.addCart({ product, size: product.size[0] });
 }
 
 </script>
