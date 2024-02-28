@@ -79,7 +79,7 @@ export default defineComponent({
   },
   setup() {
     const store = useHomeStore();
-    console.log("AAAAAAAAAA")
+
     const products = computed(()=> store.products);
     const isLoading = computed(()=> store.isLoading);
     const specials = computed(()=> store.special);
@@ -94,7 +94,6 @@ export default defineComponent({
 
     onMounted(() => {
       if (products.value.length === 0) {
-        console.log("AAAAAAAAAA")
         store.getHomeData();
       }
     });

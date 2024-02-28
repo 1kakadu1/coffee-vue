@@ -162,7 +162,7 @@ const onSub = (product: IProductModel) => {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        max-width: 100%;
+        max-width: 416px;
         font-weight: 900;
         font-size: 25px;
         line-height: 31px;
@@ -173,7 +173,7 @@ const onSub = (product: IProductModel) => {
         margin-bottom: 8px;
         text-overflow: ellipsis;
         overflow: hidden;
-        max-width: 100%;
+        max-width: 416px;
         font-weight: 500;
         font-size: 18px;
         line-height: 21px;

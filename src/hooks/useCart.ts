@@ -24,7 +24,6 @@ export default function useCart(args?: { currentItemId?: string, currentItemSize
     const openCart = computed(() => storeCart.open);
     const totalPrice = computed(() => getPrice(storeCart.products));
     const onToggleCart = () => {
-        console.log(storeCart.open)
         storeCart.toggleCart(!storeCart.open);
     }
     const currentProductsID = computed(() => {

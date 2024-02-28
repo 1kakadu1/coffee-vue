@@ -39,7 +39,7 @@ defineProps<{ link: ILinkItem[] }>()
 <script  lang="ts">
 import { defineComponent, VueElement } from 'vue';
 import ButtonBurger from "@/components/buttons/ButtonBurger.vue";
-import { RouterPath } from "../router/router";
+import type { RouterPath } from "@/types";
 
 export default defineComponent({
   name: 'MenuComponent',
