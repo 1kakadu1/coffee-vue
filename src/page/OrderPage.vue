@@ -75,7 +75,7 @@ function onSubmit(values: any) {
     isLoading.value = true;
     api.createOrder({
         ...values,
-        products: cartList.value
+        products: cartList
     }).then((res) => {
         onCartClear();
         notify({

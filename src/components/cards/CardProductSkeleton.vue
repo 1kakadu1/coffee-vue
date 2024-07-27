@@ -1,12 +1,17 @@
 <script setup  lang="ts">
 import SkeletonLoader from "@/components/SkeletonLoader.vue";
+import type { ProductCardSize } from "@/types";
+const { size } = withDefaults(defineProps<{ size?: ProductCardSize }>(),{
+    size: 'small'
+})
+const preview_size = size === 'small' ?  "card-product__preview-loader" : "card-product__preview-loader card-product__preview-loader-big"
 </script>
 
 <template>
     <div class="card-product">
         <div class="row card-product__header">
             <div class="col-12 col-sm-6">
-                <skeleton-loader cssClass="card-product__preview-loader"></skeleton-loader>
+                <skeleton-loader :cssClass="preview_size"></skeleton-loader>
             </div>
             <div class="col-12 col-sm-6 card-product__right-column">
                 <div class="card-product__rating">
@@ -44,6 +49,9 @@ import SkeletonLoader from "@/components/SkeletonLoader.vue";
         width: 100%;
         height: 220px;
         border-radius: 6px;
+        &-big{
+            height: 320px;
+        }
     }
 
 

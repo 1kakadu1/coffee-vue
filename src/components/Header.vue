@@ -27,15 +27,14 @@
 import { computed, VueElement, } from 'vue'
 import Menu from "@/components/Menu.vue";
 import CartButton from "@/components/buttons/CartButton.vue";
-import { useSearchStore } from '@/store/store';
-import { SearchMutation } from '@/store/modules/search/search.model';
 import type { RouterPath } from '@/types/models/router.model';
+import { useSearchStore } from '@/store/modules/search/search.store';
 
 defineProps<{ logo: string, menu: { label: string, href: RouterPath, icon?: VueElement }[], fixed?: boolean }>();
 const store = useSearchStore();
-const open = computed(() => store.state.open)
+const open = computed(() => store.open)
 const onToggleSearch = (value: boolean) => {
-  store.commit(SearchMutation.toggleSearchOpen, value)
+  store.toggeleSearch(value)
 }
 </script>
 

@@ -1,6 +1,6 @@
 import { collection, getDocs, where, query, limit, addDoc } from "firebase/firestore";
 import { firebaseDB } from "@/services/firebase";
-import { type ICartModel, type IProductModel } from "@/types";
+import { type ICartModel, type ICategoryModel, type IProductModel } from "@/types";
 
 class Api {
 
@@ -68,8 +68,10 @@ class Api {
             querySnap.forEach((doc) => {
                 products.push(doc.data() as IProductModel)
             })
+
             return products;
         } catch (e: unknown) {
+            console.log("Error", e)
             return Promise.reject(e);
         }
 
@@ -102,6 +104,20 @@ class Api {
                 "userID": 'not_register_user',
             });
             return Promise.resolve(docRef.id);
+        } catch (e: unknown) {
+            return Promise.reject(e);
+        }
+    }
+
+    async getCategoryList() {
+        try {
+            const category: ICategoryModel[] = []
+            const response = await query(collection(firebaseDB, "categorys"));
+            const queryCategory = await getDocs(response);
+            queryCategory.forEach((doc) => {
+                category.push(doc.data() as ICategoryModel)
+            })
+            return Promise.resolve(category);
         } catch (e: unknown) {
             return Promise.reject(e);
         }
